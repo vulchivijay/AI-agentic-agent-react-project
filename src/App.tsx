@@ -7,6 +7,7 @@ const agent = new AgenticAgent();
 function App() {
   const [result, setResult] = useState<string>('');
   const [file, setFile] = useState<File | null>(null);
+  const [showGeneratedPage, setShowGeneratedPage] = useState<boolean>(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -54,6 +55,7 @@ function App() {
     // Save generated code as a .tsx file in src/pages
     await writeFile('d:/Projects/AI-agentic-agent-react-project/src/pages/GeneratedPage.tsx', code);
     setResult('GeneratedPage.tsx created in src/pages.\n\n' + code);
+    setShowGeneratedPage(true);
   };
 
   const handleReview = async () => {
@@ -124,6 +126,11 @@ function App() {
                 <label className="form-label fw-semibold">Agent Output</label>
                 <pre className="mb-0" style={{ minHeight: '120px', fontSize: '1rem' }}>{result}</pre>
               </div>
+              {showGeneratedPage && (
+                <div className="mt-4">
+                  <h4 className="fw-bold text-success mb-3">Generated Page Preview</h4>
+                </div>
+              )}
             </div>
           </div>
         </div>
