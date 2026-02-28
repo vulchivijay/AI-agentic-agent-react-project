@@ -1,7 +1,17 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Dropdown = ({ label, items = [] }) => (
+interface DropdownItem {
+  label: string;
+  href?: string;
+}
+
+interface DropdownProps {
+  label: string;
+  items?: DropdownItem[];
+}
+
+const Dropdown: React.FC<DropdownProps> = ({ label, items = [] }) => (
   <div className="dropdown">
     <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
       {label}

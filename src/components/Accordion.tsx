@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Accordion = ({ items = [] }) => {
-  const [openIndex, setOpenIndex] = useState(null);
+interface AccordionItem {
+  header: string;
+  body: React.ReactNode;
+}
+
+interface AccordionProps {
+  items?: AccordionItem[];
+}
+
+const Accordion: React.FC<AccordionProps> = ({ items = [] }) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   return (
     <div className="accordion" id="accordionExample">
       {items.map((item, idx) => (

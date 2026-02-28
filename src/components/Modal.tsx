@@ -1,8 +1,15 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Modal = ({ show, title, children, onClose }) => (
-  <div className={`modal ${show ? 'd-block' : 'd-none'}`} tabIndex="-1" role="dialog">
+interface ModalProps {
+  show: boolean;
+  title: string;
+  children: React.ReactNode;
+  onClose?: () => void;
+}
+
+const Modal: React.FC<ModalProps> = ({ show, title, children, onClose }) => (
+  <div className={`modal ${show ? 'd-block' : 'd-none'}`} tabIndex={-1} role="dialog">
     <div className="modal-dialog" role="document">
       <div className="modal-content">
         <div className="modal-header">

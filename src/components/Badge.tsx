@@ -1,7 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Badge = ({ variant = 'primary', children }) => (
+interface BadgeProps {
+  variant?: string;
+  children: React.ReactNode;
+}
+
+const Badge: React.FC<BadgeProps> = ({ variant = 'primary', children }) => (
   <span className={`badge bg-${variant}`}>{children}</span>
 );
 

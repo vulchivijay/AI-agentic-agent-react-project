@@ -1,7 +1,17 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Breadcrumb = ({ items = [] }) => (
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+  active?: boolean;
+}
+
+interface BreadcrumbProps {
+  items?: BreadcrumbItem[];
+}
+
+const Breadcrumb: React.FC<BreadcrumbProps> = ({ items = [] }) => (
   <nav aria-label="breadcrumb">
     <ol className="breadcrumb">
       {items.map((item, idx) => (
