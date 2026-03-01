@@ -1,0 +1,27 @@
+graph TD
+A[Design Image] --> B[Design Agent]
+B --> C[Coding Agent]
+C --> D[Visual Agent]
+D --> E[Unit Test Agent]
+E --> F[System Test Agent]
+F --> G[Review Agent]
+G --> H[PR Agent]
+
+                ┌─────────────────────────┐
+                │   Design Image Upload   │
+                └─────────────┬───────────┘
+                              │
+                      LangGraph Orchestrator
+                              │
+   ┌──────────────┬───────────┬──────────────┬──────────────┐
+   │              │           │              │              │
+Design        Coding     Unit Test     System Test     Code Review
+Agent         Agent       Agent          Agent           Agent
+   │              │           │              │              │
+   └──────────────┴───────────┴──────────────┴──────────────┘
+                              │
+                    Design Diff Validation
+                              │
+                          Raise PR Agent
+                              │
+                            GitHub
