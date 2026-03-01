@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "agent": "ts-node agent/run.ts",
+    "agent": "ts-node --project tsconfig.agent.json agent/run.ts",
     "test": "jest",
     "system:test": "playwright test"
   },
