@@ -1,14 +1,13 @@
+import "dotenv/config";
 import { StateGraph } from "./core/graph";
 import { AgentState } from "./state";
-import {
-  designAnalysisNode,
-  codingNode,
-  unitTestNode,
-  systemTestNode,
-  reviewNode,
-  designTestNode,
-  raisePrNode
-} from "./nodes";
+import { designAnalysisNode } from "./nodes/designAnalysis";
+import { codingNode } from "./nodes/coding";
+import { unitTestNode } from "./nodes/unitTest";
+import { systemTestNode } from "./nodes/systemTest";
+import { reviewNode } from "./nodes/review";
+import { designTestNode } from "./nodes/designTest";
+import { raisePrNode } from "./nodes/raisePR";
 
 const graph = new StateGraph<AgentState>();
 
