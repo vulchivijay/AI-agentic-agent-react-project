@@ -2,7 +2,7 @@ import { agentGraph } from "./graph";
 
 async function run() {
   const result = await agentGraph.invoke({
-    designImagePath: "designs/bootstrap-product.png",
+    designImagePath: "./../public/data/bootstrap-product.png",
     errors: []
   });
 
