@@ -1,4 +1,4 @@
-import { StateGraph } from "langgraph";
+import { StateGraph } from "./core/graph";
 import { AgentState } from "./state";
 import {
   designAnalysisNode,
@@ -10,27 +10,24 @@ import {
   raisePrNode
 } from "./nodes";
 
-const workflow = new StateGraph<AgentState>();
+const graph = new StateGraph<AgentState>();
 
-workflow.addNode("designAnalysis", designAnalysisNode);
-workflow.addNode("coding", codingNode);
-workflow.addNode("unitTest", unitTestNode);
-workflow.addNode("systemTest", systemTestNode);
-workflow.addNode("designTest", designTestNode);
-workflow.addNode("review", reviewNode);
-workflow.addNode("raisePR", raisePrNode);
+graph.addNode("design", designAnalysisNode);
+graph.addNode("coding", codingNode);
+graph.addNode("unit", unitTestNode);
+graph.addNode("system", systemTestNode);
+graph.addNode("review", reviewNode);
+graph.addNode("designTest", designTestNode);
+graph.addNode("pr", raisePrNode);
 
-workflow.setEntryPoint("designAnalysis");
+graph.setEntryPoint("design");
 
-workflow.addEdge("designAnalysis", "coding");
+graph.addEdge("design", "coding");
+graph.addEdge("coding", "unit");
+graph.addEdge("coding", "system");
+graph.addEdge("unit", "review");
+graph.addEdge("system", "review");
+graph.addEdge("review", "designTest");
+graph.addEdge("designTest", "pr");
 
-workflow.addEdge("coding", "unitTest");
-workflow.addEdge("coding", "systemTest");
-
-workflow.addEdge("unitTest", "review");
-workflow.addEdge("systemTest", "review");
-
-workflow.addEdge("review", "designTest");
-workflow.addEdge("designTest", "raisePR");
-
-export const agentGraph = workflow.compile();
+export const agentGraph = graph;

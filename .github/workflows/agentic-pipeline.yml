@@ -1,4 +1,4 @@
-name: Agentic Page Generator
+name: Agentic Factory
 
 on:
   workflow_dispatch:
@@ -15,4 +15,4 @@ jobs:
           node-version: 20
 
       - run: npm install
-      - run: node agent/pipeline.js
+      - run: npm run agent
